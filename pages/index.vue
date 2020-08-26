@@ -1,30 +1,67 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        nuxt-architect
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <main>
+      <div class="container">
+        <div class="main-sidebar">
+          <div class="main-sidebar__list">
+            <span class="main-sidebar__item active">Архитектура</span>
+            <span class="main-sidebar__item">Благоустройство</span>
+            <span class="main-sidebar__item">Безопастность</span>
+            <span class="main-sidebar__item">Инженерия</span>
+            <span class="main-sidebar__item">Инфраструктура</span>
+            <span class="main-sidebar__item">Транспортная доступность</span>
+          </div>
+        </div>
+        <div class="main-slider">
+          <div class="main-slider__text">
+            <div class="main-slider__text-card">
+              <h2>Архитектура</h2>
+              <p>
+                <span>
+                  Оригинальная архитектура жилого комплекса бизнес-класса «Первомайская» формирует современный стиль
+                  жизни
+                </span>
+              </p>
+              <div class="main-slider__counter">
+                <span class="main-slider__prev">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490.523 490.523">
+                    <path
+                      d="M487.411,355.047L252.744,120.38c-4.165-4.164-10.917-4.164-15.083,0L2.994,355.047
+	c-4.093,4.237-3.976,10.99,0.262,15.083c4.134,3.993,10.687,3.993,14.821,0l227.115-227.115l227.115,227.136
+	c4.237,4.093,10.99,3.976,15.083-0.261c3.993-4.134,3.993-10.688,0-14.821L487.411,355.047z"
+                    />
+                    <path
+                      d="M479.859,373.266c-2.831,0.005-5.548-1.115-7.552-3.115L245.192,143.015L18.077,370.151
+	c-4.237,4.093-10.99,3.976-15.083-0.262c-3.993-4.134-3.993-10.687,0-14.821l234.667-234.667c4.165-4.164,10.917-4.164,15.083,0
+	l234.667,234.667c4.159,4.172,4.148,10.926-0.024,15.085C485.388,372.146,482.681,373.265,479.859,373.266z"
+                    />
+                  </svg>
+                </span>
+                1/6
+                <span class="main-slider__next">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490.688 490.688">
+                    <path
+                      d="M472.328,120.529L245.213,347.665L18.098,120.529c-4.237-4.093-10.99-3.975-15.083,0.262
+	c-3.992,4.134-3.992,10.687,0,14.82l234.667,234.667c4.165,4.164,10.917,4.164,15.083,0l234.667-234.667
+	c4.237-4.093,4.354-10.845,0.262-15.083c-4.093-4.237-10.845-4.354-15.083-0.262c-0.089,0.086-0.176,0.173-0.262,0.262
+	L472.328,120.529z"
+                    />
+                    <path
+                      d="M245.213,373.415c-2.831,0.005-5.548-1.115-7.552-3.115L2.994,135.633c-4.093-4.237-3.975-10.99,0.262-15.083
+	c4.134-3.992,10.687-3.992,14.82,0l227.136,227.115l227.115-227.136c4.093-4.237,10.845-4.354,15.083-0.262
+	c4.237,4.093,4.354,10.845,0.262,15.083c-0.086,0.089-0.173,0.176-0.262,0.262L252.744,370.279
+	C250.748,372.281,248.039,373.408,245.213,373.415z"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="main-slider__img">
+            <img src="/images/1-layer.png" alt />
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </main>
 </template>
 
 <script>
@@ -32,42 +69,4 @@ export default {}
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>

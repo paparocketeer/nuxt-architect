@@ -1,13 +1,10 @@
 <template>
-  <div>
-    <Nav />
-    <Nuxt />
-    <Footer />
-  </div>
+  <main>
+    <div class="container"></div>
+  </main>
 </template>
 
 <script>
-
 export default {}
 </script>
 

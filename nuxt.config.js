@@ -29,13 +29,14 @@ export default {
   ** Global CSS
   */
   css: [
+    '@/assets/scss/main.scss'
   ],
+  loading: false,
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
-  plugins: [
-  ],
+ plugins: [ { src: '~/plugins/after-each.js', mode: 'client' } ],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
@@ -50,7 +51,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa',
+    '@nuxtjs/pwa'
   ],
   /*
   ** Build configuration
