@@ -2,7 +2,7 @@
   <nav>
     <div class="container">
       <div class="nav-logo">
-        <nuxt-link to="/">
+        <nuxt-link @click.native="click" to="/">
           <span></span>Первомайская
         </nuxt-link>
       </div>
@@ -49,10 +49,10 @@ export default {
   data() {
     return {
       pages: [
-        { id: 0, path: '/', title: 'О комплексе'},
-        { id: 1, path: '/properties', title: 'Особенности'},
-        { id: 2, path: '/penthouses', title: 'Пентхаусы'},
-        { id: 3, path: '/choose', title: 'Выбрать квартиру'},
+        { id: 0, path: '/', title: 'О комплексе' },
+        { id: 1, path: '/properties', title: 'Особенности' },
+        { id: 2, path: '/penthouses', title: 'Пентхаусы' },
+        { id: 3, path: '/choose', title: 'Выбрать квартиру' },
       ],
       margin: 0,
       offset: 7,
@@ -63,14 +63,14 @@ export default {
     }
   },
   mounted() {
-      document
-        .querySelectorAll('.nav-menu__item a')
-        .forEach((page) => this.spans.push(page.offsetWidth + this.offset))
+    document
+      .querySelectorAll('.nav-menu__item a')
+      .forEach((page) => this.spans.push(page.offsetWidth + this.offset))
 
-      this.margin = Number.parseInt(
-        getComputedStyle(document.querySelector('.nav-menu__item')).marginLeft
-      )
-      this.setPosition()
+    this.margin = Number.parseInt(
+      getComputedStyle(document.querySelector('.nav-menu__item')).marginLeft
+    )
+    this.setPosition()
   },
   methods: {
     setPosition() {
