@@ -1,5 +1,11 @@
 # nuxt-architect
 
+Nuxt.js architect test app
+
+[Demo](https://nuxt-architect.netlify.app/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f602e305-e82e-4665-96a2-350a356e6743/deploy-status)](https://app.netlify.com/sites/nuxt-architect/deploys)
+
 ## Build Setup
 
 ```bash
