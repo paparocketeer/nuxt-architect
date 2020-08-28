@@ -2,7 +2,7 @@
   <nav>
     <div class="container">
       <div class="nav-logo">
-        <nuxt-link @click.native="click" to="/">
+        <nuxt-link to="/">
           <span></span>Первомайская
         </nuxt-link>
       </div>
@@ -15,7 +15,6 @@
               :data-id="page.id"
               @mouseover.native="mouseOver"
               @mouseleave.native="mouseLeave"
-              @click.native="click"
             >{{ page.title }}</nuxt-link>
           </li>
           <span></span>
@@ -97,6 +96,11 @@ export default {
     // )
     // this.setPosition()
   },
+  watch: {
+      $route() {
+        this.setPosition()
+      },
+    },
   methods: {
     setPosition() {
       // if (process.client) {
@@ -120,9 +124,10 @@ export default {
       span.style.left = this.currentLeft + 'px'
       // }
     },
-    click() {
-      this.setPosition()
-    },
+    
+    // click() {
+    //   this.setPosition()
+    // },
     mouseLeave(el) {
       this.setPosition()
     },
