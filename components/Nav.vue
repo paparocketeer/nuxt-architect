@@ -63,37 +63,62 @@ export default {
     }
   },
   mounted() {
-    document
-      .querySelectorAll('.nav-menu__item a')
-      .forEach((page) => this.spans.push(page.scrollWidth + this.offset))
+    // this.imgs.query().then((response) => {
+    //   console.log('success', response);
+    //   this.imgs = response.data.acf.gallery;
+    //   this.$nextTick(() => this.doStuffWithImgs());
+    // }, (response) => {
+    //   console.log('erreur', response);
+    // });
 
-    this.margin = Number.parseInt(
-      getComputedStyle(document.querySelector('.nav-menu__item')).marginLeft
-    )
-    this.setPosition()
+    // this.$nextTick(() => document
+    //   .querySelectorAll('.nav-menu__item a')
+    //   .forEach((page) => this.spans.push(page.scrollWidth + this.offset)))
+
+    if (process.client) {
+      window.addEventListener('load', () => {
+        document
+          .querySelectorAll('.nav-menu__item a')
+          .forEach((page) => this.spans.push(page.scrollWidth + this.offset))
+
+        this.margin = Number.parseInt(
+          getComputedStyle(document.querySelector('.nav-menu__item')).marginLeft
+        )
+        this.setPosition()
+      })
+    }
+
+    // document
+    //   .querySelectorAll('.nav-menu__item a')
+    //   .forEach((page) => this.spans.push(page.scrollWidth + this.offset))
+
+    // this.margin = Number.parseInt(
+    //   getComputedStyle(document.querySelector('.nav-menu__item')).marginLeft
+    // )
+    // this.setPosition()
   },
   methods: {
     setPosition() {
-      if (process.client) {
-        this.currentId = this.pages.findIndex(
-          (page) => page.path == this.$nuxt.$route.path
-        )
+      // if (process.client) {
+      this.currentId = this.pages.findIndex(
+        (page) => page.path == this.$nuxt.$route.path
+      )
 
-        let span = document.querySelector('.nav-menu__list span')
-        let left = this.margin - this.offset
-        this.spans.forEach((span, index) => {
-          if (index < this.currentId) {
-            left += span
-          }
-        })
+      let span = document.querySelector('.nav-menu__list span')
+      let left = this.margin - this.offset
+      this.spans.forEach((span, index) => {
+        if (index < this.currentId) {
+          left += span
+        }
+      })
 
-        this.currentWidth = this.spans[this.currentId] + this.offset
-        this.currentLeft =
-          left + this.currentId * 2 * this.margin - this.currentId * this.offset
+      this.currentWidth = this.spans[this.currentId] + this.offset
+      this.currentLeft =
+        left + this.currentId * 2 * this.margin - this.currentId * this.offset
 
-        span.style.width = this.currentWidth + 'px'
-        span.style.left = this.currentLeft + 'px'
-      }
+      span.style.width = this.currentWidth + 'px'
+      span.style.left = this.currentLeft + 'px'
+      // }
     },
     click() {
       this.setPosition()
@@ -102,46 +127,45 @@ export default {
       this.setPosition()
     },
     mouseOver(el) {
-      if (process.client) {
-        let span = document.querySelector('.nav-menu__list span')
+      // if (process.client) {
+      let span = document.querySelector('.nav-menu__list span')
 
-        let hoveredId = el.target.getAttribute('data-id')
-        let k
+      let hoveredId = el.target.getAttribute('data-id')
+      let k
 
-        if (hoveredId > this.currentId) {
-          k = hoveredId - this.currentId
-          let delta = this.currentWidth
-          this.spans.forEach((span, index) => {
-            if (index <= hoveredId && index > this.currentId) {
-              delta += span
-            }
-          })
-          span.style.width =
-            delta + k * 2 * this.margin - k * this.offset + 'px'
-        }
-
-        if (hoveredId < this.currentId) {
-          k = this.currentId - hoveredId
-          let delta = 0
-          this.spans.forEach((span, index) => {
-            if (index >= hoveredId && index < this.currentId) {
-              delta += span
-            }
-          })
-          span.style.width =
-            this.currentWidth +
-            delta +
-            k * 2 * this.margin -
-            k * this.offset +
-            'px'
-          span.style.left =
-            this.currentLeft -
-            delta -
-            k * 2 * this.margin +
-            k * this.offset +
-            'px'
-        }
+      if (hoveredId > this.currentId) {
+        k = hoveredId - this.currentId
+        let delta = this.currentWidth
+        this.spans.forEach((span, index) => {
+          if (index <= hoveredId && index > this.currentId) {
+            delta += span
+          }
+        })
+        span.style.width = delta + k * 2 * this.margin - k * this.offset + 'px'
       }
+
+      if (hoveredId < this.currentId) {
+        k = this.currentId - hoveredId
+        let delta = 0
+        this.spans.forEach((span, index) => {
+          if (index >= hoveredId && index < this.currentId) {
+            delta += span
+          }
+        })
+        span.style.width =
+          this.currentWidth +
+          delta +
+          k * 2 * this.margin -
+          k * this.offset +
+          'px'
+        span.style.left =
+          this.currentLeft -
+          delta -
+          k * 2 * this.margin +
+          k * this.offset +
+          'px'
+      }
+      // }
     },
   },
 }
