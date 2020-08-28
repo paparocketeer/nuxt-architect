@@ -75,24 +75,24 @@ export default {
   methods: {
     setPosition() {
       if (process.client) {
-      this.currentId = this.pages.findIndex(
-        (page) => page.path == this.$nuxt.$route.path
-      )
+        this.currentId = this.pages.findIndex(
+          (page) => page.path == this.$nuxt.$route.path
+        )
 
-      let span = document.querySelector('.nav-menu__list span')
-      let left = this.margin - this.offset
-      this.spans.forEach((span, index) => {
-        if (index < this.currentId) {
-          left += span
-        }
-      })
+        let span = document.querySelector('.nav-menu__list span')
+        let left = this.margin - this.offset
+        this.spans.forEach((span, index) => {
+          if (index < this.currentId) {
+            left += span
+          }
+        })
 
-      this.currentWidth = this.spans[this.currentId] + this.offset
-      this.currentLeft =
-        left + this.currentId * 2 * this.margin - this.currentId * this.offset
+        this.currentWidth = this.spans[this.currentId] + this.offset
+        this.currentLeft =
+          left + this.currentId * 2 * this.margin - this.currentId * this.offset
 
-      span.style.width = this.currentWidth + 'px'
-      span.style.left = this.currentLeft + 'px'
+        span.style.width = this.currentWidth + 'px'
+        span.style.left = this.currentLeft + 'px'
       }
     },
     click() {
@@ -103,46 +103,46 @@ export default {
     },
     mouseOver(el) {
       if (process.client) {
-      let span = document.querySelector('.nav-menu__list span')
+        let span = document.querySelector('.nav-menu__list span')
 
-      let hoveredId = el.target.getAttribute('data-id')
-      let k
-      
+        let hoveredId = el.target.getAttribute('data-id')
+        let k
 
-      if (hoveredId > this.currentId) {
-        k = hoveredId - this.currentId
-        let delta = this.currentWidth
-        this.spans.forEach((span, index) => {
-          if (index <= hoveredId && index > this.currentId) {
-            delta += span
-          }
-        })
-        span.style.width = delta + k * 2 * this.margin - k * this.offset + 'px'
+        if (hoveredId > this.currentId) {
+          k = hoveredId - this.currentId
+          let delta = this.currentWidth
+          this.spans.forEach((span, index) => {
+            if (index <= hoveredId && index > this.currentId) {
+              delta += span
+            }
+          })
+          span.style.width =
+            delta + k * 2 * this.margin - k * this.offset + 'px'
+        }
+
+        if (hoveredId < this.currentId) {
+          k = this.currentId - hoveredId
+          let delta = 0
+          this.spans.forEach((span, index) => {
+            if (index >= hoveredId && index < this.currentId) {
+              delta += span
+            }
+          })
+          span.style.width =
+            this.currentWidth +
+            delta +
+            k * 2 * this.margin -
+            k * this.offset +
+            'px'
+          span.style.left =
+            this.currentLeft -
+            delta -
+            k * 2 * this.margin +
+            k * this.offset +
+            'px'
+        }
       }
-
-      if (hoveredId < this.currentId) {
-        k = this.currentId - hoveredId
-        let delta = 0
-        this.spans.forEach((span, index) => {
-          if (index >= hoveredId && index < this.currentId) {
-            delta += span
-          }
-        })
-        span.style.width =
-          this.currentWidth +
-          delta +
-          k * 2 * this.margin -
-          k * this.offset +
-          'px'
-        span.style.left =
-          this.currentLeft -
-          delta -
-          k * 2 * this.margin +
-          k * this.offset +
-          'px'
-      }
-    }
-    }
+    },
   },
 }
 </script>
