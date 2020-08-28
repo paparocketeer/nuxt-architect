@@ -84,11 +84,6 @@ export default {
         this.margin = Number.parseInt(
           getComputedStyle(document.querySelector('.nav-menu__item')).marginLeft
         )
-
-        this.currentId = this.pages.findIndex(
-        (page) => page.path == this.$nuxt.$route.path
-      )
-      
         this.setPosition()
       })
     }
@@ -104,7 +99,10 @@ export default {
   },
   methods: {
     setPosition() {
-      // if (process.client) {      
+      // if (process.client) {
+      this.currentId = this.pages.findIndex(
+        (page) => page.path == this.$nuxt.$route.path
+      )
 
       let span = document.querySelector('.nav-menu__list span')
       let left = this.margin - this.offset
