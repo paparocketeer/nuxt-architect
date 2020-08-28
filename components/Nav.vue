@@ -65,7 +65,7 @@ export default {
   mounted() {
     document
       .querySelectorAll('.nav-menu__item a')
-      .forEach((page) => this.spans.push(page.offsetWidth + this.offset))
+      .forEach((page) => this.spans.push(page.scrollWidth + this.offset))
 
     this.margin = Number.parseInt(
       getComputedStyle(document.querySelector('.nav-menu__item')).marginLeft
@@ -74,6 +74,7 @@ export default {
   },
   methods: {
     setPosition() {
+      if (process.client) {
       this.currentId = this.pages.findIndex(
         (page) => page.path == this.$nuxt.$route.path
       )
@@ -92,6 +93,7 @@ export default {
 
       span.style.width = this.currentWidth + 'px'
       span.style.left = this.currentLeft + 'px'
+      }
     },
     click() {
       this.setPosition()
@@ -100,10 +102,12 @@ export default {
       this.setPosition()
     },
     mouseOver(el) {
+      if (process.client) {
       let span = document.querySelector('.nav-menu__list span')
 
       let hoveredId = el.target.getAttribute('data-id')
       let k
+      
 
       if (hoveredId > this.currentId) {
         k = hoveredId - this.currentId
@@ -137,7 +141,8 @@ export default {
           k * this.offset +
           'px'
       }
-    },
+    }
+    }
   },
 }
 </script>
