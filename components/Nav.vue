@@ -175,3 +175,271 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+nav{
+    font-style: normal;
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: #262525;
+    .container{   
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        height: 60px;
+        .nav-logo{        
+            a{
+                align-self: center;
+                position: relative;
+                left: -35px;
+                display: flex;
+                align-items: center;
+                span{
+                    position: relative;
+                    width: 70px;
+                    height: 70px;
+                    top: 25px;
+                    left: 0;
+                    background: #262525;
+                    display: block;
+                    margin-right: 25px;
+                }
+            }
+        }
+
+        .nav-menu{
+            font-size: 12px;
+            line-height: 15px;
+            letter-spacing: 0.8px;
+            ul{
+                list-style-type: none;
+                display: flex;
+                align-self: center;
+                padding: 0;
+                position: relative;
+                li{
+                    margin: 0 28px;
+                    position: relative;
+                    a{
+                        display: flex;
+                    } 
+                    + span{
+                        position: absolute;
+                        margin: 0;
+                        height: 4px;
+                        background: #D88F5E;
+                        bottom: -7px;
+                        transition: all 0.6s ease-in-out;
+                        &.right{
+                            left: unset;
+                            right: 0;
+                        }
+                    }  
+                            
+                }
+            }
+
+        }
+
+        .nav-phone{
+            display: inline-flex;
+            a{
+                align-self: center;
+                position: relative;
+                display: inline-flex;
+            }
+            span{
+                position: relative;
+                width: 70px;
+                height: 70px;
+                top: 25px;
+                right: -35px;
+                margin-left: -10px;
+                background: #262525;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media (max-width: 1359.9px) {
+    nav {
+        .container{
+            .nav-menu {
+                ul {
+                    li {
+                        margin: 0 10px;
+                        position: relative;
+                    }
+                }
+            }
+            .nav-logo{
+                a{
+                    span{
+                        width: 30px;
+                        height: 30px;
+                        top: 5px;
+                        left: -10px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+            .nav-phone{
+                span{
+                    width: 30px;
+                    height: 30px;
+                    top: 5px;
+                    right: -45px;
+                    margin-left: -25px;
+                    svg{
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1023.9px) {
+    nav {
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: 0;
+        .container{            
+            .nav-menu {
+                font-size: 10px;
+                line-height: 12px;
+                letter-spacing: 0.3px;
+                ul{
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    li{
+                        margin: 3px 10px;
+                        a{
+                            &.nuxt-link-exact-active{
+                                + span {
+                                    width: calc(100% + 6px);
+                                    height: 4px;
+                                    margin-left: -3px;
+                                    bottom: -3px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .nav-phone{
+                a {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767.9px) {
+    nav{
+        .container{
+            .nav-phone{
+                span {
+                    width: 30px;
+                    height: 30px;
+                    top: 5px;
+                    right: 0px;
+                    margin-left: 10px;
+                }
+            }
+            .nav-menu{
+                ul{
+                    li{
+                        + span {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .nav-logo{
+                a{
+                    left: 10px;
+                    span {
+                        width: 30px;
+                        height: 30px;
+                        top: 5px;
+                        left: -10px;
+                        margin-right: 0px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 539.9px) {
+    nav{
+        .container {
+            height: auto;
+            flex-direction: column;
+            .nav-logo{
+                a{
+                    top: 10px;
+                    span {
+                        top: 0;
+                    }
+                }
+            }
+            .nav-menu{
+                margin-top: 10px;
+                ul {
+                    flex-direction: column;
+                    align-items: center;                    
+                    li{
+                        margin: 4px 10px;
+                        a{
+                            &.nuxt-link-exact-active{
+                                + span {
+                                    bottom: -2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .nav-phone {
+                position: absolute;
+                right: 0px;
+                span{
+                    top: 10px;
+                }
+            }
+        }  
+    }  
+}
+
+@media (max-width: 375px) {  
+    nav{
+        .container{
+            .nav-phone{
+                a {
+                    display: none;
+                }
+                span {
+                    right: 10px;
+                    margin-left: 0;
+                }
+            }
+            .nav-logo{
+                a {
+                    left: 20px;
+                }
+            }
+        }
+    }
+}
+</style>
