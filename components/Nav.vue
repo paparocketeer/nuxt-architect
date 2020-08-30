@@ -8,8 +8,8 @@
       </div>
 
       <div class="nav-menu">
-        <ul class="nav-menu__list">
-          <li v-for="(page,index) in pages" :key="index" class="nav-menu__item">
+        <ul class="nav-menu__list" ref="list">
+          <li v-for="(page,index) in pages" :key="index" class="nav-menu__item" ref="item">
             <nuxt-link
               :to="page.path"
               :data-id="page.id"
@@ -17,7 +17,7 @@
               @mouseleave.native="mouseLeave"
             >{{ page.title }}</nuxt-link>
           </li>
-          <span></span>
+          <span ref="span"></span>
         </ul>
       </div>
       <div class="nav-phone">
@@ -53,7 +53,7 @@ export default {
         { id: 2, path: '/penthouses', title: 'Пентхаусы' },
         { id: 3, path: '/choose', title: 'Выбрать квартиру' },
       ],
-      margin: 0,
+      margin: 28,
       offset: 7,
       spans: [],
       currentId: 0,
@@ -73,16 +73,19 @@ export default {
     // this.$nextTick(() => document
     //   .querySelectorAll('.nav-menu__item a')
     //   .forEach((page) => this.spans.push(page.scrollWidth + this.offset)))
+    // console.log(this.$refs.item)
 
     if (process.client) {
       window.addEventListener('load', () => {
-        document
-          .querySelectorAll('.nav-menu__item a')
-          .forEach((page) => this.spans.push(page.scrollWidth + this.offset))
+        // document
+        //   .querySelectorAll('.nav-menu__item a')
+        //   .forEach((page) => this.spans.push(page.scrollWidth + this.offset))
 
-        this.margin = Number.parseInt(
-          getComputedStyle(document.querySelector('.nav-menu__item')).marginLeft
-        )
+        this.$refs.item.forEach((node) => this.spans.push(node.children[0].clientWidth + this.offset))
+
+        // this.margin = Number.parseInt(
+        //   getComputedStyle(document.querySelector('.nav-menu__item')).marginLeft
+        // )
         this.setPosition()
       })
     }
@@ -108,7 +111,8 @@ export default {
         (page) => page.path == this.$nuxt.$route.path
       )
 
-      let span = document.querySelector('.nav-menu__list span')
+      // let span = document.querySelector('.nav-menu__list span')
+      let span = this.$refs.span
       let left = this.margin - this.offset
       this.spans.forEach((span, index) => {
         if (index < this.currentId) {
@@ -133,7 +137,8 @@ export default {
     },
     mouseOver(el) {
       // if (process.client) {
-      let span = document.querySelector('.nav-menu__list span')
+      // let span = document.querySelector('.nav-menu__list span')
+      let span = this.$refs.span
 
       let hoveredId = el.target.getAttribute('data-id')
       let k
